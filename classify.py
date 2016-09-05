@@ -6,8 +6,10 @@ import utilities
 
 
 def main(file):
-    ecg_samples = utilities.load_ecg_sample_file(file)
-    classifier = manager.Classifier(ecg_samples)
+    ecg_test_samples = utilities.load_ecg_beat_file(file)
+    ecg_test = {"untrained": ecg_test_samples}
+    ecg_object_list = utilities.create_ecg_datatype(ecg_test)
+    classifier = manager.Classifier(ecg_test_samples)
     print(classifier.LABEL)
 
 if __name__ == "__main__":
