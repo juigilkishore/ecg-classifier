@@ -36,4 +36,5 @@ heart_aberrations = {
     "tachycardia1": tachycardia1
 }
 
+WAVELET = 'db2'  # Daubechies wavelet of order 2
 WAVELET_DECOMPOSITION_LEVEL = 4

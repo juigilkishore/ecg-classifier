@@ -7,16 +7,13 @@ import utilities
 
 def main(file):
     # Load the ecg beat file
-    ecg_training_samples = utilities.load_ecg_train_file(file)
-
-    # Instantiate the ECGBeat object for every beat across all the ailments
-    ecg_objects = utilities.create_ecg_datatype(ecg_training_samples)
+    data_matrix, label_matrix = utilities.load_train_file(file)
 
     # Get the wavelet features for every beat across all the ailments
-    ecg_features_list = utilities.get_ecg_features(ecg_objects)
+    ecg_features = utilities.get_features(data_matrix)
 
     # Instantiate the CombinedNeuralNet algorithm to train the features
-    algorithm = manager.CombinedNeuralNet(ecg_features_list)
+    algorithm = manager.CombinedNeuralNet(ecg_features, label_matrix)
     weights = algorithm.train()
 
 if __name__ == "__main__":

@@ -55,8 +55,8 @@ class CombinedNeuralNet(object):
     """
     Implements the combined neural network algorithm
     """
-    def __init__(self, ecg_list):
-        self.experiments = [(ecg.samples, ecg.ailment) for ecg in ecg_list]
+    def __init__(self, data, label):
+        self.experiments = (data, label)
 
     def train(self):
         pass
