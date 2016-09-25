@@ -5,7 +5,7 @@ import numpy
 import features
 import manager
 
-from constants import WAVELET_DECOMPOSITION_LEVEL
+from constants import WAVELET_DECOMPOSITION_LEVEL, MOTHER_WAVELET
 
 
 def load_ecg_beat_file(file_path):
@@ -43,10 +43,7 @@ def get_features(ecg_data):
     :return: Numpy matrix of ecg beat features (N x 19)
     """
     ecg_features = []
-    for row in ecg_data:
-        wav = features.WaveletFeatures(row.tolist()[0],
-                                       WAVELET_DECOMPOSITION_LEVEL)
-        wav.wavelet_extraction()
-        wav.wavelet_selection()
-        ecg_features.append(wav.wavelet_features)
+    wavlet = features.WaveletFeatures(ecg_data, mother_wavelet=MOTHER_WAVELET,
+                                      level=WAVELET_DECOMPOSITION_LEVEL)
+    ecg_features = wavlet.get_features()
     return numpy.matrix(ecg_features)
